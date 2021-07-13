@@ -44,6 +44,25 @@
 		    <artifactId>postgresql</artifactId>
 		    <version>42.2.18</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>io.javalin</groupId>
+		    <artifactId>javalin</artifactId>
+		    <version>3.13.9</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-simple</artifactId>
+		    <version>1.7.30</version>
+		</dependency>
+		
+		<!--  This is an object mapper, it maps our Java objects into JSON to be sent over the internet -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.10.5</version>
+		</dependency>
   
   </dependencies>
 </project>
