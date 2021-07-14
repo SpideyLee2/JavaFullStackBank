@@ -36,10 +36,13 @@
 	</nav>
 	
 	<div class="bodyMainContent">
-        <div class="searchCustomerAccounts">
+        <div id="searchCustomerAccounts">
             <h5>Search for customer's bank accounts:
-                <span><input type="text" placeholder="Enter customer username" class="thirtyCharInput">
-                    <button type="button" class="btn btn-primary">Search</button>
+                <span>
+                    <form action="/customerAccounts" method="GET">
+                        <input type="text" placeholder="Enter customer username" class="thirtyCharInput" name="username">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
                 </span>
             </h5>
         </div>

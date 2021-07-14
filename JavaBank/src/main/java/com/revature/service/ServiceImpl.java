@@ -109,6 +109,11 @@ public class ServiceImpl implements Service{
 		return dbHandler.selectCustomersOrderedByLastName();
 	}
 	
+	@Override
+	public User getCustomerByUsername(String username) {
+		return dbHandler.selectCustomerByUsername(username);
+	}
+	
 	// Helper Methods
 	
 	@Override
@@ -192,10 +197,6 @@ public class ServiceImpl implements Service{
 		return false;
 	}
 
-	@Override
-	public User getCustomerByUsername(String username) {
-		return dbHandler.selectCustomerByUsername(username);
-	}
 	
 	private boolean isProblematicName(String name) {
 		if(name == "back" || name == null || name == "null") {

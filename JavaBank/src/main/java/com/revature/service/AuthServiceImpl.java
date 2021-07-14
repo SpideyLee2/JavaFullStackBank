@@ -6,28 +6,30 @@ import com.revature.repository.DBHandlerImpl;
 
 public class AuthServiceImpl implements AuthService {
 
-	DBHandler dbHandler = new DBHandlerImpl();
+	private DBHandler dbHandler;
+	
+	public AuthServiceImpl(DBHandler dbHandler) {
+		this.dbHandler = dbHandler;
+	}
+	
+	private CustomerService customerService = new CustomerServiceImpl(new DBHandlerImpl());
 
 	@Override
-	public boolean authenticateUser(String username, String password) {
-		try {
-			User user = dbHandler.selectUserByUsername(username);
-			
-			//checking if user exists with that username
-			if(user == null) {
-				return false;
-			}
-			else {
-				//checking if that user password matches.
-				if(password.equals(user.getPassword())) {
-					return true;
-				}
-			}
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
+	public boolean authenticateUser(User user) {
+		if(user.isEmployee()) {
+			System.out.println("User is an employee!");
+			return true;
 		}
-		
-		return false;
+		else {
+			System.out.println("User is a customer!");
+			return false;
+		}
 	}
+	
+	@Override
+	public User getUser(String username, String password) {
+		return customerService.logIn(username, password);
+	}
+	
+	
 }

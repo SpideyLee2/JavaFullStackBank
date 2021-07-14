@@ -14,15 +14,15 @@ public interface Service {
 	
 	// Customer methods
 	
-	public boolean makeMoneyTransfer(User sender, BankAccount senderAcc, User receiver, BankAccount receiverAcc, double amount); //
+	public boolean makeMoneyTransfer(User sender, BankAccount senderAcc, User receiver, BankAccount receiverAcc, double amount);
 	
-	public boolean changeBalance(BankAccount acc, User user, double amount); //
+	public boolean changeBalance(BankAccount acc, User user, double amount);
 	
-	public boolean createNewUser(User user); //
+	public boolean createNewUser(User user);
 	
-	public User logIn(String username, String password); //
+	public User logIn(String username, String password);
 	
-	public BankAccount createNewBankAccount(User user, String name, double balance); //
+	public BankAccount createNewBankAccount(User user, String name, double balance);
 	
 	
 	// Employee methods

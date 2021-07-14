@@ -27,23 +27,7 @@ create table bank_accounts (
 grant all privileges on table users to java_user;
 grant all privileges on table bank_accounts to java_user;
 grant all privileges on sequence bank_accounts_account_id_seq to java_user;
-	
 
-
--- Insert sample users/bank accounts for JUnit testing.
---insert into users values
---	('testcustomer1', 'good p4ssword', 'tester', 'one', false),
---	('testcustomer2', 'good p4ssword', 'tester', 'two', false),
---	('testcustomer3', 'good p4ssword', 'tester', 'three', false),
---	('testemployee', 'good p4ssword', 'etester', 'one', true);
---
---insert into bank_accounts(u_user_name, account_name, balance, is_approved) values
---	('testcustomer1', 'testacc1', 50.00, false),
---	('testcustomer1', 'testacc2', 20.00, false),
---	('testcustomer1', 'testacc3', 500.00, true),
---	('testcustomer2', 'testacc4', 20.00, true),
---	('testcustomer2', 'testacc5', 0.00, false);
-	
 
 
 -- Insert sample users/bank accounts into DB.

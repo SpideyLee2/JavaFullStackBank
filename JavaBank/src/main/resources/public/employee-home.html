@@ -36,13 +36,26 @@
 	</nav>
 	
 	<div class="bodyMainContent">
-        <div class="searchCustomerAccounts">
+        <div id="searchCustomerAccounts">
             <h5>Search for customer's bank accounts:
-                <span><input type="text" placeholder="Enter customer username" class="thirtyCharInput">
-                    <button type="button" class="btn btn-primary">Search</button>
+                <span>
+                    <input type="text" placeholder="Enter customer username" class="thirtyCharInput" id="username">
+                    <button type="button" class="btn btn-primary" id="searchAccountsButton">Search</button>
                 </span>
             </h5>
         </div>
+
+        <table class="table bg-light bankAccountTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>Bank Account</th>
+                    <th>Balance</th>
+                    <th>Approved?</th>
+                </tr>
+            </thead>
+            <tbody id="accountTableSearchBody">
+            </tbody>
+        </table>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
