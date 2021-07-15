@@ -11,7 +11,9 @@ public interface EmployeeService {
 	
 	public List<BankAccount> getCustomerBankAccounts(User user);
 	
-	public boolean validateBankAccount(BankAccount acc, User employee);
+	public boolean approveBankAccount(BankAccount acc, User employee);
+	
+	public boolean rejectBankAccount(BankAccount acc, User employee);
 	
 	public List<User> getCustomersOrderedByLastName();
 	

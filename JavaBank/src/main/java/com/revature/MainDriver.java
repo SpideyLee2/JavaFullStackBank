@@ -8,7 +8,6 @@ import com.revature.controller.CustomerController;
 import com.revature.controller.CustomerControllerImpl;
 import com.revature.controller.EmployeeController;
 import com.revature.controller.EmployeeControllerImpl;
-import com.revature.models.User;
 import com.revature.repository.DBHandler;
 import com.revature.repository.DBHandlerImpl;
 import com.revature.service.AuthServiceImpl;
@@ -21,6 +20,8 @@ public class MainDriver {
 
 	private static final String LOGIN_PATH = "/login";
 	private static final String ACCOUNTS_PATH = "/accounts";
+	private static final String EMPLOYEE_VIEW_ACCOUNTS_PATH = "/employeeViewAccounts";
+	private static final String APPROVAL_PATH = "/approvals";
 	
 	public static final Logger loggy = Logger.getLogger(MainDriver.class);
 	
@@ -36,9 +37,20 @@ public class MainDriver {
 				}
 			).start(7000);
 		
+		// Login/Logout responses
 		app.post(LOGIN_PATH, ctx -> authController.login(ctx));
 		app.get("/logout", ctx -> authController.logout(ctx));
+		
+		// Customer responses
 		app.get(ACCOUNTS_PATH, ctx -> customerController.getBankAccounts(ctx));
-		app.get("/customerAccounts", ctx -> employeeController.getCustomerAccounts(ctx));
+		app.put(ACCOUNTS_PATH, ctx -> customerController.makeDeposit(ctx));
+		
+		// Employee responses
+		app.get(EMPLOYEE_VIEW_ACCOUNTS_PATH, ctx -> employeeController.getCustomerAccounts(ctx));
+		app.post(EMPLOYEE_VIEW_ACCOUNTS_PATH, ctx -> employeeController.postCustomerAccounts(ctx));
+		
+		app.get(APPROVAL_PATH, ctx -> employeeController.getAccountsAwaitingApproval(ctx));
+		app.put(APPROVAL_PATH, ctx -> employeeController.putApprovedAccount(ctx));
+		app.delete(APPROVAL_PATH, ctx -> employeeController.deleteRejectedAccount(ctx));
 	}
 }

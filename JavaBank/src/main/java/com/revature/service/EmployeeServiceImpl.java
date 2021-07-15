@@ -25,12 +25,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
-	public boolean validateBankAccount(BankAccount acc, User employee) {
-		boolean approved = dbHandler.updateBankAccountApproval(acc, employee);
-		if(approved) {
-			acc.setApproved(true);
-		}
-		return approved;
+	public boolean approveBankAccount(BankAccount acc, User employee) {
+		return dbHandler.updateBankAccountApproval(acc, employee);
+	}
+	
+	@Override
+	public boolean rejectBankAccount(BankAccount acc, User employee) {
+		return dbHandler.deleteBankAccount(acc, employee);
 	}
 
 	@Override

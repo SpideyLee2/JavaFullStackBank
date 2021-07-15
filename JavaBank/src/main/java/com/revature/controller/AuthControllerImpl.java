@@ -1,9 +1,7 @@
 package com.revature.controller;
 
 import com.revature.models.User;
-import com.revature.repository.DBHandlerImpl;
 import com.revature.service.AuthService;
-import com.revature.service.AuthServiceImpl;
 
 import io.javalin.http.Context;
 
@@ -23,7 +21,6 @@ public class AuthControllerImpl implements AuthController {
 		User user = authService.getUser(username, password);
 		
 		if(user != null) {
-			System.out.println("User exists!");
 			ctx.status(200);
 			ctx.cookieStore("username", username);
 			ctx.cookieStore("password", password);
@@ -37,14 +34,12 @@ public class AuthControllerImpl implements AuthController {
 
 		}
 		else {
-			System.out.println("User entered incorrect info");
 			ctx.status(407);
 			ctx.redirect("login.html");
 		}
 		
 		System.out.println(username);
 		System.out.println(password);
-		
 	}
 	
 	@Override

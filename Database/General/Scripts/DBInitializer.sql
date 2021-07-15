@@ -2,8 +2,6 @@ drop table if exists bank_accounts;
 
 drop table if exists users;
 
-
-
 create table users (
 	user_name		varchar(30)		primary key,
 	pass_word		varchar(30)		not null,
@@ -37,9 +35,17 @@ insert into users values
 
 insert into users values 
 	('new customer 1', 'good p4ssword', 'don', 'donathan'), 
-	('new customer 2', 'good p4ssword', 'lance', 'lancelot');
+	('new customer 2', 'good p4ssword', 'lance', 'lancelot'),
+	('new customer 3', 'good p4ssword', 'ronny', 'mcron');
 
 insert into bank_accounts(u_user_name, account_name, balance, is_approved) values
 	('new customer 1', 'acc1', 100.00, true),
 	('new customer 1', 'acc2', 0.00, true),
-	('new customer 1', 'acc3', 50.00, false);
+	('new customer 1', 'acc3', 50.00, true),
+	('new customer 1', 'acc4', 100.00, false),
+	('new customer 1', 'acc5', 0.00, false),
+	('new customer 1', 'acc6', 50.00, false),
+	('new customer 2', 'acc1', 100.00, false),
+	('new customer 2', 'acc2', 0.00, false),
+	('new customer 2', 'acc3', 50.00, false);
+	

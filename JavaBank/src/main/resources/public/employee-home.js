@@ -1,42 +1,37 @@
 window.onload = function() {
-    document.getElementById(searchAccountsButton).addEventListener("click", grabAccounts);
+	grabAccounts();
 }
 
-function grabAccounts() {
-	const url = "customerAccounts";
+const url = "employeeViewAccounts";
 
+function grabAccounts() {
 	let xhr = new XMLHttpRequest();
 
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
-			console.log(xhr.status);
-			
+			// console.log(xhr.status);
+
 			if(xhr.status == 200){
-				console.log("Retrieved customer's accounts:");
-				console.log(xhr.ResponseText);
+				removeAllAlerts();
 				
-				let accountList = JSON.parse(xhr.ResponseText);
-				
-				console.log(accountList);
-			
-				accountList.forEach(element => {
-						addRow(element);
+				let accountList = JSON.parse(xhr.responseText);
+
+				accountList.forEach(account => {
+						addRow(account);
 				});
+			}
+			else if (xhr.status == 407) {
+				createAlert("A customer with that username does not exist.", AlertEnum.DANGER);
 			}
 		}
 	}
 
 	xhr.open("GET", url);
-
-	xhr.onload = function() {
-		console.log(xhr.responseText);
-	}
-	
 	xhr.send();
 }
 
 function addRow(account) {
-	let table = document.getElementById("accountSearchTableBody");
+	let table = document.getElementById("accountTableBody");
 	
 	let tableRow = document.createElement("tr");
 
@@ -44,9 +39,9 @@ function addRow(account) {
 	let accBalanceCell = document.createElement("td");
 	let accApprovedCell = document.createElement("td");
 	
-	accNameCol.innerHTML = account.name;
-	accBalanceCol.innerHTML = account.balance;
-	accApprovedCol.innerHTML = account.approved;
+	accNameCell.innerHTML = account.name;
+	accBalanceCell.innerHTML = account.balance;
+	accApprovedCell.innerHTML = account.approved;
 
 	tableRow.appendChild(accNameCell);
 	tableRow.appendChild(accBalanceCell);

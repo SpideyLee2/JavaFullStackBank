@@ -29,27 +29,43 @@
                     <a class="nav-link" href="transactions.html">Transaction Log</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="login.html">Log Out</a>
+					<form action="logout" method="GET">
+						<a type="submit" class="nav-link active" href="logout">Log Out</a>
+					</form>
                 </li>
             </ul>
         </div>
-	</nav>
-	
+	</nav>      
+
 	<div class="bodyMainContent">
         <div id="searchCustomerAccounts">
-            <h5>Search for customer's bank accounts:
-                <span>
-                    <form action="/customerAccounts" method="GET">
-                        <input type="text" placeholder="Enter customer username" class="thirtyCharInput" name="username">
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </form>
-                </span>
-            </h5>
+            <h5>Search for customer's bank accounts:</h5>
+                <!-- <form action="employeeViewAccounts" method="POST" class="mb-3">
+                    <input type="text" placeholder="Enter customer username" class="thirtyCharInput" name="username">
+                    <button type="submit" class="btn btn-primary" id="searchAccountsButton">Search</button>
+                </form> -->
+                <form action="employeeViewAccounts" method="POST" class="mb-3">
+                    <input type="text" placeholder="Enter customer username" class="thirtyCharInput" name="username">
+                    <button type="submit" class="btn btn-primary" id="searchAccountsButton">Search</button>
+                </form>
         </div>
+
+        <table class="table bg-light bankAccountTable">
+            <thead class="thead-light">
+                <tr>
+                    <th class="accountTableHeader">Bank Account</th>
+                    <th class="accountTableHeader">Balance</th>
+                    <th class="accountTableHeader">Approval Status</th>
+                </tr>
+            </thead>
+            <tbody id="accountTableBody"></tbody>
+        </table>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="utilities.js"></script>
+    <script src="employee-home.js"></script>
 </body>
 </html>

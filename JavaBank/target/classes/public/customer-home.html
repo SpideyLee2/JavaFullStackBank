@@ -33,7 +33,7 @@
 				</li>
 				<li class="nav-item active">
 					<form action="logout" method="GET">
-						<a type="submit" class="nav-link" href="login.html">Log Out</a>
+						<a type="submit" class="nav-link active" href="logout">Log Out</a>
 					</form>
 				</li>
 	    	</ul>
@@ -44,59 +44,20 @@
 		<table class="table bg-light bankAccountTable">
 			<thead class="thead-light">
 				<tr>
-					<th scope="col">Bank Account</th>
-					<th scope="col">Balance</th>
-					<th scope="col">Approved?</th>
-					<th scope="col"></th>
+					<th class="accountTableHeader">Bank Account</th>
+					<th class="accountTableHeader">Balance</th>
+					<th class="accountTableHeader">Approval Status</th>
+					<th class="accountTableHeader">Make a transaction here</th>
 				</tr>
 			</thead>
-			<tbody id="accountTableBody">
-				<tr>
-					<th scope="row">Placeholder Account</th>
-					<td>Placeholder Balance</td>
-					<td>Placeholder Approval</td>
-					<td>
-						<label class="moneyInputLabel">
-							$
-							<input type="number" placeholder="Enter amount" min="10" pattern="^\d+(?:\.\d{1,2})?$">
-						</label>
-						<button type="button" class="btn btn-primary">Deposit</button>
-						<button type="button" class="btn btn-primary">Withdraw</button>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Placeholder Account</th>
-					<td>Placeholder Balance</td>
-					<td>Placeholder Approval</td>
-					<td>
-						<label class="moneyInputLabel">
-							$
-							<input type="number" placeholder="Enter amount" min="10" pattern="^\d+(?:\.\d{1,2})?$">
-						</label>
-						<button type="button" class="btn btn-primary">Deposit</button>
-						<button type="button" class="btn btn-primary">Withdraw</button>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Placeholder Account</th>
-					<td>Placeholder Balance</td>
-					<td>Placeholder Approval</td>
-					<td>
-						<label class="moneyInputLabel">
-							$
-							<input type="number" placeholder="Enter amount" min="10" pattern="^\d+(?:\.\d{1,2})?$">
-						</label>
-						<button type="button" class="btn btn-primary">Deposit</button>
-						<button type="button" class="btn btn-primary">Withdraw</button>
-					</td>
-				</tr>
-			</tbody>
+			<tbody id="accountTableBody"></tbody>
 		</table>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="utilities.js"></script>
 	<script src="customer-home.js"></script>
 </body>
 </html>

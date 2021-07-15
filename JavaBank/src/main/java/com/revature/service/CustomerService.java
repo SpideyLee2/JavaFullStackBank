@@ -1,7 +1,6 @@
 package com.revature.service;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 import com.revature.models.BankAccount;
 import com.revature.models.User;

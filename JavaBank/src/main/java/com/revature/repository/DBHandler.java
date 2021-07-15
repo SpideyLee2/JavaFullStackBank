@@ -36,5 +36,5 @@ public interface DBHandler {
 	public boolean updateBankAccountApproval(BankAccount acc, User employee);
 	
 	//Delete
-//	public void deleteBankAccount(BankAccount acc);
+	public boolean deleteBankAccount(BankAccount acc, User employee);
 }

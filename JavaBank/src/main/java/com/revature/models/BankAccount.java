@@ -8,6 +8,10 @@ public class BankAccount {
 	private double balance;
 	private boolean isApproved;
 	
+	public BankAccount() {
+		super();
+	}
+	
 	public BankAccount(int accountId, String usernameRef, String name, double balance, boolean isApproved) {
 		this.accountId = accountId;
 		this.usernameRef = usernameRef;

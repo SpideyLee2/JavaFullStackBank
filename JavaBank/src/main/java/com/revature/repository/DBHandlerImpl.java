@@ -218,6 +218,25 @@ public class DBHandlerImpl implements DBHandler{
 			return false;
 		}
 	}
+	
+	@Override
+	public boolean deleteBankAccount(BankAccount acc, User employee) {
+		String sql = "DELETE FROM bank_accounts WHERE account_id = ?;";
+		
+		try(Connection conn = ConnectionFactory.getConnection()) {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, acc.getAccountId());
+			
+			ps.execute();
+			MainDriver.loggy.info("Bank Acc '" + acc.getName() + "' was rejected by '" + employee.getUsername()  + "' and deleted from the db.");
+			return true;
+		} catch (SQLException e) {
+			MainDriver.loggy.warn("Failed to reject Bank Acc '" + acc.getName() + "' as per Employee '" + employee.getUsername() 
+			+ "' request:\n" + e.toString());
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	private List<BankAccount> selectMultipleBankAccountsHelper(PreparedStatement ps) throws SQLException {
 		List<BankAccount> accs = new ArrayList<BankAccount>();
