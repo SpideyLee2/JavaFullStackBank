@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Welcome, Customer!</title>
+	<title>Welcome to Perry Bank!</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="BankApp.css">
 </head>
@@ -42,25 +42,21 @@
 	    	</ul>
 	  	</div>
 	</nav>
-	
+
 	<div class="bodyMainContent">
-		<table class="table bg-light bankAccountTable">
-			<thead class="thead-light">
-				<tr>
-					<th class="accountTableHeader">Bank Account</th>
-					<th class="accountTableHeader">Balance</th>
-					<th class="accountTableHeader">Approval Status</th>
-					<th class="accountTableHeader">Make a transaction here</th>
-				</tr>
-			</thead>
-			<tbody id="accountTableBody"></tbody>
-		</table>
+		<div class="openAccount" id="openAccount">
+			<div id="hiddenInputs"></div>
+			<h3>Open New Account</h3>
+			<input type="Text" class="form-control thirtyCharInput" placeholder="Account Name" maxlength="30" id="name"><br>
+			<input type="Text" class="form-control thirtyCharInput" placeholder="Starting Balance (optional)" aria-label:"Amount (to the nearest penny)" id="balance"><br>
+			<button type="button" class="btn btn-primary mt-1" id="button">Open Account!</button>
+		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-	<script src="utilities.js"></script>
-	<script src="customer-home.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="utilities.js"></script>
+	<script src="open-account.js"></script>
 </body>
 </html>

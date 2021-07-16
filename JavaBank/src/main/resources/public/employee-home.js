@@ -1,8 +1,10 @@
 window.onload = function() {
 	grabAccounts();
+	document.getElementById("username").addEventListener("input", regulateInput);
 }
 
-const url = "employeeViewAccounts";
+const url = "viewAccounts";
+const unameOrPwordRegex = /[^A-Za-z0-9 ]/;
 
 function grabAccounts() {
 	let xhr = new XMLHttpRequest();
@@ -48,4 +50,9 @@ function addRow(account) {
 	tableRow.appendChild(accApprovedCell);
 	
 	table.appendChild(tableRow);
+}
+
+function regulateInput(event) {
+	let input = event.srcElement;
+	input.value = revertInput(input, unameOrPwordRegex);
 }

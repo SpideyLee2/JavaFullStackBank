@@ -14,7 +14,7 @@ public class AuthControllerImpl implements AuthController {
 	}
 	
 	@Override
-	public void login(Context ctx) {
+	public void postLogin(Context ctx) {
 		String username = ctx.formParam("username");
 		String password = ctx.formParam("password");
 		
@@ -37,14 +37,10 @@ public class AuthControllerImpl implements AuthController {
 			ctx.status(407);
 			ctx.redirect("login.html");
 		}
-		
-		System.out.println(username);
-		System.out.println(password);
 	}
 	
 	@Override
-	public void logout(Context ctx) {
-		System.out.println("User logged out");
+	public void getLogout(Context ctx) {
 		ctx.clearCookieStore();
 		ctx.redirect("login.html");
 	}

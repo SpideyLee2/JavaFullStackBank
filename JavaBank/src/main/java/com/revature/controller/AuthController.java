@@ -4,7 +4,7 @@ import io.javalin.http.Context;
 
 public interface AuthController {
 
-	public void login(Context ctx);
+	public void postLogin(Context ctx);
 	
-	public void logout(Context ctx);
+	public void getLogout(Context ctx);
 }

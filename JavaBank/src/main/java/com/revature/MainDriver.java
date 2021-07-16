@@ -19,9 +19,13 @@ import io.javalin.Javalin;
 public class MainDriver {
 
 	private static final String LOGIN_PATH = "/login";
+	private static final String LOGOUT_PATH = "/logout";
+	private static final String REGISTER_PATH = "/register";
 	private static final String ACCOUNTS_PATH = "/accounts";
-	private static final String EMPLOYEE_VIEW_ACCOUNTS_PATH = "/employeeViewAccounts";
+	private static final String EMPLOYEE_VIEW_ACCOUNTS_PATH = "/viewAccounts";
 	private static final String APPROVAL_PATH = "/approvals";
+	private static final String TRANSACTION_LOG_PATH = "/transactions";
+	private static final String TRANSFER_PATH = "/transfer";
 	
 	public static final Logger loggy = Logger.getLogger(MainDriver.class);
 	
@@ -38,12 +42,18 @@ public class MainDriver {
 			).start(7000);
 		
 		// Login/Logout responses
-		app.post(LOGIN_PATH, ctx -> authController.login(ctx));
-		app.get("/logout", ctx -> authController.logout(ctx));
+		app.post(LOGIN_PATH, ctx -> authController.postLogin(ctx));
+		app.get(LOGOUT_PATH, ctx -> authController.getLogout(ctx));
+		
+		// Register responses
+		app.post(REGISTER_PATH, ctx -> customerController.postRegister(ctx));
 		
 		// Customer responses
 		app.get(ACCOUNTS_PATH, ctx -> customerController.getBankAccounts(ctx));
-		app.put(ACCOUNTS_PATH, ctx -> customerController.makeDeposit(ctx));
+		app.post(ACCOUNTS_PATH, ctx -> customerController.postNewBankAccount(ctx));
+		app.put(ACCOUNTS_PATH, ctx -> customerController.putDeposit(ctx));
+		
+		app.put(TRANSFER_PATH, ctx -> customerController.putTransfer(ctx));
 		
 		// Employee responses
 		app.get(EMPLOYEE_VIEW_ACCOUNTS_PATH, ctx -> employeeController.getCustomerAccounts(ctx));
@@ -52,5 +62,7 @@ public class MainDriver {
 		app.get(APPROVAL_PATH, ctx -> employeeController.getAccountsAwaitingApproval(ctx));
 		app.put(APPROVAL_PATH, ctx -> employeeController.putApprovedAccount(ctx));
 		app.delete(APPROVAL_PATH, ctx -> employeeController.deleteRejectedAccount(ctx));
+		
+		app.get(TRANSACTION_LOG_PATH, ctx -> employeeController.getTransactionLog(ctx));
 	}
 }

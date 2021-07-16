@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.postgresql.util.PSQLException;
+
 import com.revature.MainDriver;
 import com.revature.models.BankAccount;
 import com.revature.models.User;
@@ -32,7 +34,8 @@ public class DBHandlerImpl implements DBHandler{
 			return true;
 		} catch (SQLException e) {
 			MainDriver.loggy.warn("Failed to add User '" + user.getUsername() + "' to the db:\n" + e.toString());
-			e.printStackTrace();
+			// Username already exists
+//			e.printStackTrace();
 			return false;
 		}
 	}

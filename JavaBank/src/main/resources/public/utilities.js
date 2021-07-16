@@ -1,36 +1,53 @@
 let AlertEnum = {
-    SUCCESS: {text: "success", flashColor: "green"},
+    SUCCESS: {text: "success", flashColor: "greenyellow"},
     DANGER: {text: "danger", flashColor: "red"},
-    WARNING: {text: "warning", flashColor: "yellow"},
+    WARNING: {text: "warning", flashColor: "goldenrod"},
     INFO: {text: "info", flashColor: "cyan"}
 };
 
-function regulateAmount(event) {
-	// console.log("Amount value changed!")
-	let amountInput = event.srcElement;
-	let amount = amountInput.value;
-	amountInput.value = amount;
-	// amountInput.value = amount.replace("+", "");
-	// amountInput.value = amount.replace("-", "");
-}
-
 function clearAccounts() {
 	let tableBody = document.getElementById("accountTableBody");
-	while(tableBody.firstChild) {
-		tableBody.removeChild(tableBody.firstChild);
-	}
+	removeAllChildNodes(tableBody);
 }
 
-function classRegexMatcher(buttonClasses) {
-	let classNamePattern = /^[0-9]+$/;
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 
-	for(let i = 0; i < buttonClasses.length; i++) {
-		if(buttonClasses[i].match(classNamePattern)){
-			return buttonClasses[i];
+function regexMatcher(text, regex) {
+	return String(text).match(regex);
+}
+
+function regexArrayMatcher(textArray, regex) {
+	for(let i = 0; i < textArray.length; i++) {
+		if (String(textArray[i]).match(regex)) {
+			return textArray[i];
 		}
 	}
-	console.log("classMatcher couldn't find class that matched pattern. returning null!");
 	return null;
+}
+
+function revertInput(input, regex) {
+	let inputValueStore = input.value;
+    let index = inputValueStore.search(regex);
+	
+    while(index != -1) {
+		console.log("input value bad");
+        console.log(`Removing ${input.value.charAt(index)} from ${input.value}`);
+		let substringStart = inputValueStore.substring(0, index);
+		let substringEnd = inputValueStore.substring(index + 1);
+		if (substringEnd == undefined) {
+			inputValueStore = substringStart;
+		}
+		else {
+			inputValueStore = substringStart + substringEnd;
+		}
+        index = inputValueStore.search(regex);
+    }
+
+	return inputValueStore;
 }
 
 function createAlert(text, alertEnumValue) {
@@ -62,7 +79,16 @@ function createAlert(text, alertEnumValue) {
 		bodyMainContent.prepend(alertDiv);
 		alert = alertDiv;
     }
-    alertFlash(dangerAlert, alertEnumValue.flashColor)
+	else if (!alert.innerText.includes(text)) {
+		removeAllChildNodes(alert);
+
+		let errorTextAgain = document.createElement("b");
+		errorTextAgain.append(`${alertEnumValue.text}: `.toUpperCase());
+
+		alert.append(errorTextAgain);
+		alert.append(text);
+	}
+    alertFlash(alert, alertEnumValue.flashColor)
 }
 
 function alertFlash(alert, flashColor) {

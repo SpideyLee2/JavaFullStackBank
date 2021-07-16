@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Welcome to Perry Bank!</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="BankApp.css">
+</head>
+<body>
+	<div class="banner">
+		<h1>PERRY BANK</h1>
+		<h6>Logged in as CUSTOMER</h6>
+	</div>
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    	<span class="navbar-toggler-icon"></span>
+	  	</button>
+	
+	  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    	<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="customer-home.html">Home<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="open-account.html">Open New Account</a>
+				</li>
+				<li class="nav-item dropdown active">
+					<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Transfer Funds
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="transfer-self.html">Transfer to Personal Account</a>
+					<a class="dropdown-item" href="transfer-other.html">Transfer to Other Account</a>
+					</div>
+				</li>
+				<li class="nav-item active">
+					<form action="logout" method="GET">
+						<a type="submit" class="nav-link active" href="logout">Log Out</a>
+					</form>
+				</li>
+	    	</ul>
+	  	</div>
+	</nav>
+
+    <div class="bodyMainContent">
+        <div class="transfer">
+            <h4 class="mt-1">Select an account to transfer money from</h4>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select an account
+                </button><span class="ml-2" id="menu1Balance"></span>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdownAccounts1">
+                    <!-- <button class="dropdown-item" type="button">My First Account</button>
+                    <button class="dropdown-item" type="button">My Second Account</button>
+                    <button class="dropdown-item" type="button">My Third Account</button> -->
+                </div>
+            </div>
+            <h4 class="mt-4">Select an account to transfer money to</h4>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select an account
+                </button><span class="ml-2" id="menu2Balance"></span>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdownAccounts2">
+                    <!-- <button class="dropdown-item" type="button">My First Account</button>
+                    <button class="dropdown-item" type="button">My Second Account</button>
+                    <button class="dropdown-item" type="button">My Third Account</button> -->
+                </div>
+            </div>
+            <h4 class="mt-4">Enter transfer amount</h4>
+            <input type="number" placeholder="Amount to transfer" maxlength="10" id="amount"><br>
+            <button type="button" class="btn btn-primary mt-4" id="transferButton">Transfer</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="utilities.js"></script>
+    <script src="transfer-self.js"></script>
+</body>
+</html>

@@ -13,4 +13,6 @@ public interface EmployeeController {
 	public void putApprovedAccount(Context ctx);
 
 	public void deleteRejectedAccount(Context ctx);
+
+	public void getTransactionLog(Context ctx);
 }

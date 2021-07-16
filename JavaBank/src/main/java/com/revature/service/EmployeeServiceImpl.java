@@ -1,6 +1,10 @@
 package com.revature.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.revature.models.BankAccount;
 import com.revature.models.User;
@@ -42,5 +46,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public User getCustomerByUsername(String username) {
 		return dbHandler.selectCustomerByUsername(username);
+	}
+
+	@Override
+	public List<String> getTransactionLogList() {
+		List<String> transactionLog = new ArrayList<String>();
+		try {
+			Scanner sc = new Scanner(new File("C:\\Users\\spide\\Desktop\\Revature Documents\\Projects\\Project 1\\Full-Stack-Banking-Project\\JavaBank\\log4j-application.log"));
+			while(sc.hasNextLine()) {
+				transactionLog.add(sc.nextLine());
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return transactionLog;
 	}
 }

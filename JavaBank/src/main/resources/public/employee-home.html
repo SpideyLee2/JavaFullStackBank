@@ -40,14 +40,10 @@
 	<div class="bodyMainContent">
         <div id="searchCustomerAccounts">
             <h5>Search for customer's bank accounts:</h5>
-                <!-- <form action="employeeViewAccounts" method="POST" class="mb-3">
-                    <input type="text" placeholder="Enter customer username" class="thirtyCharInput" name="username">
-                    <button type="submit" class="btn btn-primary" id="searchAccountsButton">Search</button>
-                </form> -->
-                <form action="employeeViewAccounts" method="POST" class="mb-3">
-                    <input type="text" placeholder="Enter customer username" class="thirtyCharInput" name="username">
-                    <button type="submit" class="btn btn-primary" id="searchAccountsButton">Search</button>
-                </form>
+            <form action="viewAccounts" method="POST" class="mb-3">
+                <input type="text" placeholder="Enter customer username" class="thirtyCharInput" name="username" id="username">
+                <button type="submit" class="btn btn-primary" id="searchAccountsButton">Search</button>
+            </form>
         </div>
 
         <table class="table bg-light bankAccountTable">

@@ -3,20 +3,17 @@ window.onload = function() {
 };
 
 const url = "accounts";
+const classNameRegex = /^[0-9]+$/;
+const badCharactersRegex = /[^0-9.]/;
 
 function grabAccounts() {
 	let xhr = new XMLHttpRequest();
 
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
-			// console.log(xhr.status);
 
 			if(xhr.status == 200){
-				// console.log(xhr.responseText);
-
 				let accountList = JSON.parse(xhr.responseText);
-
-				// console.log(accountList);
 
 				accountList.forEach(account => {
 						addRow(account);
@@ -32,62 +29,58 @@ function grabAccounts() {
 function putBalance(event) {
 	// console.log(event);
 	let buttonClasses = event.srcElement.classList;
-	let className = classRegexMatcher(buttonClasses);
-	if(className === null) {
-		console.log("Something went wrong with the regex classMatcher function. className is null!");
+	
+	let className = regexArrayMatcher(buttonClasses, classNameRegex);
+
+	let transactionElements = document.getElementsByClassName(className);
+	let accBalance = transactionElements[1].innerText;
+	let amount = transactionElements[3].value;
+
+	// User clicked button without entering an amount
+	if(amount == ""){
+		return;
 	}
 	else {
-		let transactionElements = document.getElementsByClassName(className);
-		// console.log(transactionElements);
-		let accBalance = transactionElements[1].innerText;
-		let amount = transactionElements[3].value;
+		console.log(amount);
 
-		// User clicked button without entering an amount
-		if(amount == ""){
-			return;
+		let newBalance = 0;
+		if(event.srcElement.innerText == "Deposit") {
+			newBalance = parseFloat(accBalance) + parseFloat(amount);
 		}
 		else {
-			console.log(amount);
-
-			let newBalance = 0;
-			if(event.srcElement.innerText == "Deposit") {
-				newBalance = parseFloat(accBalance) + parseFloat(amount);
+			newBalance = parseFloat(accBalance) - parseFloat(amount);
+			if (newBalance < 0) {
+				createAlert("You cannot withdraw more than your balance.", AlertEnum.DANGER);
+				return;
 			}
-			else {
-				newBalance = parseFloat(accBalance) - parseFloat(amount);
-				if (newBalance < 0) {
-					createAlert("You cannot withdraw more than your balance.", AlertEnum.DANGER);
-					return;
-				}
-			}
-	
-			let xhr = new XMLHttpRequest();
-	
-			xhr.onreadystatechange = function(){
-				if(xhr.readyState == 4){
-					console.log(xhr.status);
-	
-					if(xhr.status == 200){
-						removeAllAlerts();
-
-						clearAccounts();
-						grabAccounts();
-					}
-				}
-			}
-	
-			xhr.open("PUT", url);
-	
-			let bankAcc = {
-				accountId: className,
-				usernameRef: null,
-				name: transactionElements[0].innerText,
-				balance: newBalance,
-				approved: transactionElements[2].innerText
-			}
-	
-			xhr.send(JSON.stringify(bankAcc));
 		}
+
+		let xhr = new XMLHttpRequest();
+
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				console.log(xhr.status);
+
+				if(xhr.status == 200){
+					removeAllAlerts();
+
+					clearAccounts();
+					grabAccounts();
+				}
+			}
+		}
+
+		xhr.open("PUT", url);
+
+		let bankAcc = {
+			accountId: className,
+			usernameRef: null,
+			name: transactionElements[0].innerText,
+			balance: newBalance,
+			approved: transactionElements[2].innerText
+		};
+
+		xhr.send(JSON.stringify(bankAcc));
 	}
 }
 
@@ -132,11 +125,11 @@ function addRow(account) {
 		withdrawButton.disabled = true;
 	}
 
-	amountInput.setAttribute("type", "number");
+	amountInput.setAttribute("type", "Text");
 	amountInput.setAttribute("class", `form-control ${account.accountId}`);
 	amountInput.setAttribute("placeholder", "Amount");
 	amountInput.setAttribute("min", "10");
-	amountInput.setAttribute("max", accBalanceCell.value);
+	amountInput.setAttribute("max", "10000");
 	amountInput.setAttribute("aria-label", "Amount (to the nearest penny)");
 	amountInput.addEventListener("input", regulateAmount)
 
@@ -166,4 +159,10 @@ function addRow(account) {
 	tableRow.appendChild(depositWithdrawCell);
 	
 	tableBody.appendChild(tableRow);
+}
+
+function regulateAmount(event) {
+	let input = event.srcElement;
+	
+	input.value = revertInput(input, badCharactersRegex);
 }

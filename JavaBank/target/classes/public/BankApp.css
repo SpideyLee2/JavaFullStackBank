@@ -5,6 +5,9 @@ body {
 h1 {
 	color: white;
 }
+h4 {
+	font-size: large;
+}
 h5 {
 	color: white;
 	font-size: medium;
@@ -55,4 +58,13 @@ h6 {
 }
 .accountTableHeader {
 	font-size: larger;
+}
+#logHeader {
+	background-color: lightblue;
+	padding: 0.5%;
+	margin-top: 1%;
+}
+#log {
+	padding: 1%;
+	background-color:gainsboro;
 }

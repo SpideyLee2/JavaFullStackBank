@@ -2,10 +2,20 @@ package com.revature.models;
 
 public class User {
 	
-	private String firstName, lastName, username, password;
+	private String username, password, firstName, lastName;
 	private boolean isEmployee;
-	public User(String username, String password, String firstName, String lastName, boolean isEmployee) {
+	
+	public User() {
 		super();
+	}
+	public User(String username) {
+		this.username = username;
+		this.password = null;
+		this.firstName = null;
+		this.lastName = null;
+		this.isEmployee = false;
+	}
+	public User(String username, String password, String firstName, String lastName, boolean isEmployee) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;

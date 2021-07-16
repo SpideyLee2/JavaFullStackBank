@@ -18,4 +18,6 @@ public interface EmployeeService {
 	public List<User> getCustomersOrderedByLastName();
 	
 	public User getCustomerByUsername(String username);
+
+	public List<String> getTransactionLogList();
 }

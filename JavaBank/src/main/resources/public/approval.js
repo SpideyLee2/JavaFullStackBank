@@ -3,6 +3,7 @@ window.onload = function() {
 };
 
 const url = "approvals";
+const classNameRegex = /^[0-9]+$/;
 
 function grabAccounts() {
 	let xhr = new XMLHttpRequest();
@@ -17,14 +18,8 @@ function grabAccounts() {
 				accountList.forEach(account => {
 						addRow(account);
 				});
-                console.log(accountList);
-                // if(accountList == null || accountList.length == 0) {
-                //     console.log("creating alert");
-                //     createAlert("There are no more accounts left to approve. Your job is done!", AlertEnum.SUCCESS)
-                // }
-                // else {
-                //     removeAllAlerts();
-                // }
+
+                removeAllAlerts();
 			}
             else if (xhr.status == 407) {
                 console.log("hello there!");
@@ -81,7 +76,7 @@ function addRow(account) {
 
 function handleApproval(event) {
 	let buttonClasses = event.srcElement.classList;
-	let className = classRegexMatcher(buttonClasses);
+	let className = regexArrayMatcher(buttonClasses, classNameRegex);
 
 	if(className != null) {
 		let transactionElements = document.getElementsByClassName(className);
